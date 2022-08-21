@@ -1,0 +1,71 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url 'https://www.jitpack.io' }
+        maven { url 'https://files.minecraftforge.net/maven' }
+        maven { url 'https://repo.spongepowered.org/maven' }
+    }
+    dependencies {
+        classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
+        classpath 'com.github.unascribed:RiftGradle:73e7b0a'
+    }
+}
+
+plugins {
+    id 'scala'
+}
+
+apply plugin: 'net.minecraftforge.gradle.tweaker-client'
+apply plugin: 'java'
+
+group = "${group}"
+version = "${version}"
+archivesBaseName = "${filename}"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+    maven { url 'https://repo.unascribed.com' }
+}
+
+dependencies {
+    compile files("$sourceSets.main.scala.outputDir")
+    implementation 'com.github.unascribed:Rift:FINAL'
+    implementation 'com.github.Nova-Committee:Scift:2-1.1.0'
+}
+
+minecraft {
+    version = '1.13.2'
+    mappings = 'snapshot_20181130'
+    runDir = 'run'
+    tweakClass = 'org.dimdev.riftloader.launch.RiftLoaderClientTweaker'
+}
+
+tasks.compileJava.dependsOn compileScala
+tasks.compileScala.dependsOn.remove("compileJava")
+
+sourceSets {
+    main {
+        scala {
+            outputDir = file("$buildDir/classes/scala/main")
+        }
+        java {
+            outputDir = file("$buildDir/classes/java/main")
+        }
+    }
+}
+
+
+apply plugin: "org.spongepowered.mixin"
+
+mixin {
+    defaultObfuscationEnv notch
+    add sourceSets.main, "mixins.examplemod.refmap.json"
+}

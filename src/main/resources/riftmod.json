@@ -1,0 +1,11 @@
+{
+  "id": "examplemod",
+  "name": "ExampleMod-Rift",
+  "authors": [
+    "Author"
+  ],
+  "listeners": [
+    "committee.nova.examplemod.ExampleMod"
+  ],
+  "description": "An example mod uses Scift."
+}
