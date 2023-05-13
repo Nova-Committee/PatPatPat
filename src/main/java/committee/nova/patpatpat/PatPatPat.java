@@ -1,9 +1,12 @@
 package committee.nova.patpatpat;
 
+import committee.nova.patpatpat.client.compat.CatJammiesCompat;
 import committee.nova.patpatpat.common.capabilities.PatCapability;
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
+import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,7 +20,10 @@ public class PatPatPat {
     public static Capability<PatCapability.IPat> PAT;
 
     public PatPatPat() {
+        if (jammiesDetected()) DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> CatJammiesCompat::init);
+    }
 
-        MinecraftForge.EVENT_BUS.register(this);
+    public static boolean jammiesDetected() {
+        return ModList.get().isLoaded("catjammies");
     }
 }

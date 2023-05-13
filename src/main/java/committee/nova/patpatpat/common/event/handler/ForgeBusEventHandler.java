@@ -48,7 +48,7 @@ public class ForgeBusEventHandler {
                 if (r.nextInt(101) < 10) {
                     c.heal(1.0F);
                     if (w instanceof ServerWorld)
-                        ((ServerWorld) w).sendParticles(ParticleTypes.HAPPY_VILLAGER, c.getX(), c.getY() + .75, c.getZ(),
+                        ((ServerWorld) w).sendParticles(ParticleTypes.HEART, c.getX(), c.getY() + .75, c.getZ(),
                                 1, .0, .0, .0, .0);
                 }
             } else c.setSilent(false);
