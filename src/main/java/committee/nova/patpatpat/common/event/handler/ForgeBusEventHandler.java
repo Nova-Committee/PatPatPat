@@ -61,10 +61,11 @@ public class ForgeBusEventHandler {
     public static void onPat(AttackEntityEvent e) {
         final Entity l = e.getTarget();
         if (!e.getPlayer().isShiftKeyDown() || !(l instanceof CatEntity)) return;
-        if (!l.level.isClientSide) {
-            l.getCapability(PatPatPat.PAT).ifPresent(p -> p.setJoy(10));
-            l.setSilent(true);
-        }
+        final CatEntity cat = (CatEntity) l;
         e.setCanceled(true);
+        if (cat.level.isClientSide) return;
+        if (cat.isInLove() || cat.isDeadOrDying()) return;
+        cat.getCapability(PatPatPat.PAT).ifPresent(p -> p.setJoy(10));
+        cat.setSilent(true);
     }
 }
