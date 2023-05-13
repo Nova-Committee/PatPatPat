@@ -1,9 +1,9 @@
 package committee.nova.patpatpat.common.network.msg;
 
 import committee.nova.patpatpat.PatPatPat;
+import committee.nova.patpatpat.common.util.CommonUtilities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkEvent;
@@ -34,7 +34,7 @@ public class PatSyncMessage {
             final World w = Minecraft.getInstance().level;
             if (w == null) return;
             final Entity e = w.getEntity(id);
-            if (!(e instanceof CatEntity)) return;
+            if (!(CommonUtilities.isPattable(e))) return;
             e.getCapability(PatPatPat.PAT).ifPresent(p -> p.setJoy(joy));
         });
         ctx.get().setPacketHandled(true);

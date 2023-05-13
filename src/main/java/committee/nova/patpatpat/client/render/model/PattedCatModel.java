@@ -8,19 +8,22 @@ import net.minecraft.util.math.MathHelper;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
-public class PatCatModel<T extends CatEntity> extends CatModel<T> {
-    public PatCatModel(float f) {
+public class PattedCatModel<T extends CatEntity> extends CatModel<T> {
+    public PattedCatModel(float f) {
         super(f);
     }
 
     @Override
-    public void setupAnim(final T cat, final float limbSwing, final float limbSwingAmount, final float ageInTicks, final float netHeadYaw, final float headPitch) {
-        super.setupAnim(cat, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+    public void setupAnim(T cat, float limbSwing, float limbSwingAmount, float ageInTicks, float headYaw, float headPitch) {
+        super.setupAnim(cat, limbSwing, limbSwingAmount, ageInTicks, headYaw, headPitch);
         cat.getCapability(PatPatPat.PAT).ifPresent(p -> {
             if (p.getJoy() > 0) {
                 this.head.xRot = MathHelper.sin(ageInTicks) * 0.2f;
                 this.head.zRot = MathHelper.cos(ageInTicks) * 0.01f;
                 this.head.yRot = MathHelper.cos(ageInTicks) * 0.01f;
+                this.tail2.xRot = 2.670354F + MathHelper.sin(ageInTicks) * 0.2f;
+                this.tail2.zRot = MathHelper.cos(ageInTicks) * 0.02f;
+                this.tail2.yRot = MathHelper.cos(ageInTicks) * 0.02f;
             }
         });
     }

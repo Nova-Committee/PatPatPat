@@ -1,8 +1,8 @@
 package committee.nova.patpatpat.client.render.renderer;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import committee.nova.patpatpat.client.render.layer.CatCollarLayer;
-import committee.nova.patpatpat.client.render.model.PatCatModel;
+import committee.nova.patpatpat.client.render.layer.PattedCatCollarLayer;
+import committee.nova.patpatpat.client.render.model.PattedCatModel;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -18,10 +18,10 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class PatCatRenderer extends MobRenderer<CatEntity, PatCatModel<CatEntity>> {
-    public PatCatRenderer(EntityRendererManager manager) {
-        super(manager, new PatCatModel<>(.0F), .4F);
-        addLayer(new CatCollarLayer(this));
+public class PattedCatRenderer extends MobRenderer<CatEntity, PattedCatModel<CatEntity>> {
+    public PattedCatRenderer(EntityRendererManager manager) {
+        super(manager, new PattedCatModel<>(.0F), .4F);
+        addLayer(new PattedCatCollarLayer(this));
     }
 
     @Override
