@@ -19,9 +19,8 @@ public class PattedWolfCollarLayer extends LayerRenderer<WolfEntity, PattedWolfM
     }
 
     public void render(MatrixStack ps, IRenderTypeBuffer buffer, int packedLightIn, WolfEntity wolf, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        if (wolf.isTame() && !wolf.isInvisible()) {
-            float[] afloat = wolf.getCollarColor().getTextureDiffuseColors();
-            renderColoredCutoutModel(this.getParentModel(), COLLAR, ps, buffer, packedLightIn, wolf, afloat[0], afloat[1], afloat[2]);
-        }
+        if (!wolf.isTame() || wolf.isInvisible()) return;
+        float[] afloat = wolf.getCollarColor().getTextureDiffuseColors();
+        renderColoredCutoutModel(this.getParentModel(), COLLAR, ps, buffer, packedLightIn, wolf, afloat[0], afloat[1], afloat[2]);
     }
 }

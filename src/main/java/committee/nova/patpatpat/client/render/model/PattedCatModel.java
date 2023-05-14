@@ -18,12 +18,12 @@ public class PattedCatModel<T extends CatEntity> extends CatModel<T> {
         super.setupAnim(cat, limbSwing, limbSwingAmount, ageInTicks, headYaw, headPitch);
         cat.getCapability(PatPatPat.PAT).ifPresent(p -> {
             if (p.getJoy() > 0) {
-                this.head.xRot = MathHelper.sin(ageInTicks) * 0.2f;
-                this.head.zRot = MathHelper.cos(ageInTicks) * 0.01f;
-                this.head.yRot = MathHelper.cos(ageInTicks) * 0.01f;
-                this.tail2.xRot = 2.670354F + MathHelper.sin(ageInTicks) * 0.2f;
-                this.tail2.zRot = MathHelper.cos(ageInTicks) * 0.02f;
-                this.tail2.yRot = MathHelper.cos(ageInTicks) * 0.02f;
+                this.head.xRot = MathHelper.sin(ageInTicks) * .2F;
+                this.head.zRot = MathHelper.cos(ageInTicks) * .01F;
+                this.head.yRot = MathHelper.cos(ageInTicks) * .01F;
+                this.tail2.xRot = 2.670354F + MathHelper.sin(ageInTicks) * .2F;
+                this.tail2.zRot = MathHelper.cos(ageInTicks) * .02F;
+                this.tail2.yRot = MathHelper.cos(ageInTicks) * .02F;
             }
         });
     }
