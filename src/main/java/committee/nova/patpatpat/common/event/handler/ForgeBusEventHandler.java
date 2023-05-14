@@ -37,7 +37,7 @@ public class ForgeBusEventHandler {
     public static void onPattableTick(LivingEvent.LivingUpdateEvent e) {
         final LivingEntity c = e.getEntityLiving();
         final World w = c.level;
-        final long time = w.getDayTime();
+        final long time = w.getGameTime();
         if (time % 5 != 0) return;
         final List<SoundEvent> pattedSounds = CommonUtilities.getPattedSounds(c);
         if (pattedSounds.isEmpty()) return;
