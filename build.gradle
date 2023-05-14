@@ -20,13 +20,12 @@ buildscript {
     }
 }
 
-apply plugin: 'scala'
 apply plugin: 'forge'
 apply plugin: 'idea'
 
 version = "${version}"
-group = "committee.nova.examplemod" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "ExampleMod"
+group = "committee.nova" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "PatPatPat-Forge-1.7.10"
 def mcVersion = "1.7.10"
 
 minecraft {
@@ -42,21 +41,19 @@ dependencies {
 
 }
 
-processResources
-        {
-            duplicatesStrategy = DuplicatesStrategy.INCLUDE
-            // this will ensure that this task is redone when the versions change.
-            inputs.property "version", project.version
-            inputs.property "mcversion", mcVersion
-
-            // replace stuff in mcmod.info, nothing else
-            from(sourceSets.main.resources.srcDirs) {
-                include 'mcmod.info'
-                // replace version and mcversion
-                expand 'version': project.version, 'mcversion': mcVersion
-            }
-            // copy everything else, thats not the mcmod.info
-            from(sourceSets.main.resources.srcDirs) {
-                exclude 'mcmod.info'
-            }
-        }
+processResources {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", mcVersion
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        // replace version and mcversion
+        expand 'version': project.version, 'mcversion': mcVersion
+    }
+    // copy everything else, thats not the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
