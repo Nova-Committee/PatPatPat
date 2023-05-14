@@ -1,0 +1,78 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+        maven { url "https://maven.fabricmc.net" }
+        maven { url "https://repo.sleeping.town" }
+    }
+    dependencies {
+        classpath "agency.highlysuspect:voldeloom:2.3"
+        classpath 'com.github.johnrengelman:shadow:8.1.1'
+    }
+}
+
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: "agency.highlysuspect.voldeloom"
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(11) //Last version able to set a --release as low as 6
+compileJava.options.release.set(6) //Forge doesn't understand classes compiled to versions of the class-file format newer than Java 6's
+
+version = "1.0.0"
+archivesBaseName = "PatPatPat-Forge-1.6.4"
+String minecraftVersion = "1.6.4"
+String forgeVersion = "1.6.4-9.11.1.1345"
+
+configurations {
+    shade
+}
+
+volde {
+    runs {
+        client {
+            programArg "--username=Dev"
+        }
+    }
+}
+
+repositories {
+    flatDir {
+        dir 'libs'
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${minecraftVersion}"
+    forge "net.minecraftforge:forge:${forgeVersion}:universal" //no @zip classifier this time
+    mappings "net.minecraftforge:forge:${forgeVersion}:src@zip"
+    implementation("vlserverparticle:vlserverparticle:1.0.0")
+    shade("vlserverparticle:vlserverparticle:1.0.0")
+}
+
+shadowJar {
+    archiveClassifier.set('dev')
+    configurations = [project.configurations.shade]
+    relocate("committee.nova.vlserverparticle", "committee.nova.patpatpat.shaded.vlserverparticle")
+}
+
+remapJarForRelease {
+    dependsOn(tasks.shadowJar)
+}
+
+processResources {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+
+        // replace version and mcversion
+        expand 'version': project.version
+    }
+
+    // copy everything else except the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}

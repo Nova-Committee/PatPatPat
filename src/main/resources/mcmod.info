@@ -1,0 +1,13 @@
+[
+  {
+    "modid": "patpatpat",
+    "name": "PatPatPat",
+    "description": "Pat your pets!",
+    "version": "${version}",
+    "mcversion": "1.6.4",
+    "url": "https://github.com/Nova-Committee/PatPatPat",
+    "authorList": [
+      "Tapio"
+    ]
+  }
+]
