@@ -59,7 +59,7 @@ public class ForgeBusEventHandler {
                         sw.sendParticles(ParticleTypes.HEART, c.getX(), c.getY() + .75, c.getZ(),
                                 1, .0, .0, .0, .0);
                         if (r.nextBoolean()) {
-                            final ExperienceOrbEntity orb = new ExperienceOrbEntity(sw, c.getX(), c.getY(), c.getZ(), r.nextInt(6));
+                            final ExperienceOrbEntity orb = new ExperienceOrbEntity(sw, c.getX(), c.getY(), c.getZ(), 1 + r.nextInt(5));
                             sw.addFreshEntity(orb);
                         }
                     }
