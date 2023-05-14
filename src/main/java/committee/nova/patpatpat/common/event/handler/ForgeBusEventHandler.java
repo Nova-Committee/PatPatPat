@@ -43,8 +43,8 @@ public class ForgeBusEventHandler {
         final List<SoundEvent> pattedSounds = CommonUtilities.getPattedSounds(c);
         if (pattedSounds.isEmpty()) return;
         c.getCapability(PatPatPat.PAT).ifPresent(p -> {
-            final int joy = p.getJoy() - 1;
-            p.setJoy(Math.max(0, joy));
+            final int joy = Math.max(0, p.getJoy() - 1);
+            p.setJoy(joy);
             final Random r = c.getRandom();
             if (joy > 0) {
                 if (time % 12 == 0) {
