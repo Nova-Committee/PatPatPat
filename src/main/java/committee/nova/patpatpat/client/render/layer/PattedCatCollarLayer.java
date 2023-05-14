@@ -14,8 +14,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @ParametersAreNonnullByDefault
 public class PattedCatCollarLayer extends LayerRenderer<CatEntity, PattedCatModel<CatEntity>> {
     private static final ResourceLocation COLLAR = new ResourceLocation("textures/entity/cat/cat_collar.png");
-    private final CatModel<CatEntity> model = new CatModel<>(0.01f);
-    ;
+    private final CatModel<CatEntity> model = new CatModel<>(.01F);
 
     public PattedCatCollarLayer(IEntityRenderer<CatEntity, PattedCatModel<CatEntity>> renderer) {
         super(renderer);

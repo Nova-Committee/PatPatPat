@@ -21,13 +21,13 @@ public class PattedWolfModel<T extends WolfEntity> extends WolfModel<T> {
         wolf.getCapability(PatPatPat.PAT).ifPresent(p -> {
             if (p.getJoy() > 0) {
                 final ModelRenderer head = ((List<ModelRenderer>) headParts()).get(0);
-                head.xRot = MathHelper.sin(ageInTicks) * 0.2f;
-                head.zRot = MathHelper.cos(ageInTicks) * 0.01f;
-                head.yRot = MathHelper.cos(ageInTicks) * 0.01f;
+                head.xRot = MathHelper.sin(ageInTicks) * .2F;
+                head.zRot = MathHelper.cos(ageInTicks) * .01F;
+                head.yRot = MathHelper.cos(ageInTicks) * .01F;
                 final ModelRenderer tail = ((List<ModelRenderer>) bodyParts()).get(5);
-                tail.xRot = ageInTicks + MathHelper.sin(ageInTicks) * 0.2f;
-                tail.zRot = MathHelper.cos(ageInTicks) * 0.02f;
-                tail.yRot = MathHelper.cos(ageInTicks) * 0.02f;
+                tail.xRot = wolf.getTailAngle() + MathHelper.sin(ageInTicks) * .2F;
+                tail.zRot = MathHelper.cos(ageInTicks) * .3F;
+                tail.yRot = MathHelper.cos(ageInTicks) * .3F;
             }
         });
     }

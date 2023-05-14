@@ -1,6 +1,7 @@
 package committee.nova.patpatpat.client.render.renderer;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import committee.nova.patpatpat.PatPatPat;
 import committee.nova.patpatpat.client.render.layer.PattedWolfCollarLayer;
 import committee.nova.patpatpat.client.render.model.PattedWolfModel;
 import mcp.MethodsReturnNonnullByDefault;
@@ -11,6 +12,7 @@ import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
@@ -25,7 +27,9 @@ public class PattedWolfRenderer extends MobRenderer<WolfEntity, PattedWolfModel<
     }
 
     protected float getBob(WolfEntity wolf, float f) {
-        return wolf.getTailAngle();
+        final AtomicBoolean b = new AtomicBoolean();
+        wolf.getCapability(PatPatPat.PAT).ifPresent(p -> b.set(p.getJoy() > 0));
+        return b.get() ? super.getBob(wolf, f) : wolf.getTailAngle();
     }
 
     public void render(WolfEntity wolf, float f1, float f2, MatrixStack ps, IRenderTypeBuffer buffer, int i) {
