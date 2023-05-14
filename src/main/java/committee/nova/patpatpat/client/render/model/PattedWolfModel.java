@@ -26,8 +26,8 @@ public class PattedWolfModel<T extends WolfEntity> extends WolfModel<T> {
                 head.yRot = MathHelper.cos(ageInTicks) * .01F;
                 final ModelRenderer tail = ((List<ModelRenderer>) bodyParts()).get(5);
                 tail.xRot = wolf.getTailAngle() + MathHelper.sin(ageInTicks) * .2F;
-                tail.zRot = MathHelper.cos(ageInTicks) * .3F;
-                tail.yRot = MathHelper.cos(ageInTicks) * .3F;
+                tail.zRot = MathHelper.cos(ageInTicks) * .5F;
+                tail.yRot = MathHelper.cos(ageInTicks) * .5F;
             }
         });
     }
