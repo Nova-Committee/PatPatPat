@@ -20,6 +20,7 @@ public class NetworkHandler implements IPacketHandler {
         if (!packet.channel.equals("patpatpat:pat")) return;
         try {
             final World world = ((AbstractClientPlayer) p).worldObj;
+            if (world == null) return;
             final int entityId = dis.readInt();
             final int joy = dis.readInt();
             final Entity e = world.getEntityByID(entityId);
