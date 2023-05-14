@@ -7,6 +7,7 @@ import committee.nova.patpatpat.common.network.msg.PatSyncMessage;
 import committee.nova.patpatpat.common.util.CommonUtilities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.particles.ParticleTypes;
@@ -51,11 +52,17 @@ public class ForgeBusEventHandler {
                             pattedSounds.get(r.nextInt(pattedSounds.size())), c.getSoundSource(),
                             1.0F + r.nextFloat() / 5.0F, 1.0F + r.nextFloat() / 4.0F);
                 }
-                if (r.nextInt(101) < 10) {
+                if (r.nextInt(101) < 3) {
                     c.heal(1.0F);
-                    if (w instanceof ServerWorld)
-                        ((ServerWorld) w).sendParticles(ParticleTypes.HEART, c.getX(), c.getY() + .75, c.getZ(),
+                    if (w instanceof ServerWorld) {
+                        final ServerWorld sw = ((ServerWorld) w);
+                        sw.sendParticles(ParticleTypes.HEART, c.getX(), c.getY() + .75, c.getZ(),
                                 1, .0, .0, .0, .0);
+                        if (r.nextBoolean()) {
+                            final ExperienceOrbEntity orb = new ExperienceOrbEntity(sw, c.getX(), c.getY(), c.getZ(), r.nextInt(6));
+                            sw.addFreshEntity(orb);
+                        }
+                    }
                 }
             } else c.setSilent(false);
             final PatSyncMessage msg = new PatSyncMessage(c.getId(), p.getJoy());
