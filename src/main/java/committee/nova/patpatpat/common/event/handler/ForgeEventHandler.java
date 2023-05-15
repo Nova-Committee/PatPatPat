@@ -26,8 +26,8 @@ public class ForgeEventHandler {
         final EntityLivingBase l = e.entityLiving;
         final World w = l.worldObj;
         if (w.isRemote) return;
-        final long time = w.getWorldInfo().getWorldTotalTime();
-        if ((time - l.entityId) % 5 != 0) return;
+        final long time = w.getWorldInfo().getWorldTotalTime() - l.entityId;
+        if (time % 5 != 0) return;
         final List<String> pattedSounds = Utilities.getPattedSounds(l);
         if (pattedSounds.isEmpty()) return;
         final int joy = Math.max(0, Utilities.getJoyFromEntity(l) - 1);
