@@ -38,8 +38,8 @@ public class ForgeBusEventHandler {
         final LivingEntity c = e.getEntityLiving();
         final Level w = c.level;
         if (w.isClientSide) return;
-        final long time = w.getGameTime();
-        if ((time - c.getId()) % 5 != 0) return;
+        final long time = w.getGameTime() - c.getId();
+        if (time % 5 != 0) return;
         final List<SoundEvent> pattedSounds = CommonUtilities.getPattedSounds(c);
         if (pattedSounds.isEmpty()) return;
         c.getCapability(PatCapability.PAT).ifPresent(p -> {
