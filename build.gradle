@@ -3,11 +3,11 @@ plugins {
 }
 
 
-group = 'commitee.nova'
+group = 'committee.nova'
 version = '1.0.0'
 
 java {
-    archivesBaseName = 'patpatpat'
+    archivesBaseName = 'PatPatPat-Forge-1.18.2'
     toolchain.languageVersion = JavaLanguageVersion.of(17)
 }
 
