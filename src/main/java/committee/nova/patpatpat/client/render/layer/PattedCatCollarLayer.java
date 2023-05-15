@@ -5,7 +5,6 @@ import committee.nova.patpatpat.client.render.model.PattedCatModel;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
-import net.minecraft.client.renderer.entity.model.CatModel;
 import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.util.ResourceLocation;
 
@@ -14,7 +13,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @ParametersAreNonnullByDefault
 public class PattedCatCollarLayer extends LayerRenderer<CatEntity, PattedCatModel<CatEntity>> {
     private static final ResourceLocation COLLAR = new ResourceLocation("textures/entity/cat/cat_collar.png");
-    private final CatModel<CatEntity> model = new CatModel<>(.01F);
+    private final PattedCatModel<CatEntity> model = new PattedCatModel<>(.01F);
 
     public PattedCatCollarLayer(IEntityRenderer<CatEntity, PattedCatModel<CatEntity>> renderer) {
         super(renderer);
