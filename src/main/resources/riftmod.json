@@ -1,11 +1,12 @@
 {
-  "id": "examplemod",
-  "name": "ExampleMod-Rift",
+  "id": "patpatpat",
+  "name": "PatPatPat-Rift",
   "authors": [
-    "Author"
+    "Tapio"
   ],
   "listeners": [
-    "committee.nova.examplemod.ExampleMod"
+    "committee.nova.patpatpat.PatPatPat",
+    "committee.nova.patpatpat.common.network.handler.PacketHandler"
   ],
-  "description": "An example mod uses Scift."
+  "description": "Pat your pets."
 }

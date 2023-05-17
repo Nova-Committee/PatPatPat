@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.7.7",
+  "compatibilityLevel": "JAVA_8",
+  "target": "@env(DEFAULT)",
+  "package": "committee.nova.patpatpat.mixin",
+  "refmap": "mixins.patpatpat.refmap.json",
+  "mixins": [
+    "common.MixinEntityPlayer",
+    "common.MixinEnumConnectionState",
+    "common.MixinEnumConnectionState$Play",
+    "common.MixinLivingEntityBase"
+  ],
+  "client": [
+    "client.MixinRenderManager"
+  ],
+  "verbose": true
+}
