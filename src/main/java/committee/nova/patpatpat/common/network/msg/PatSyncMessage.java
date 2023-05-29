@@ -1,11 +1,9 @@
 package committee.nova.patpatpat.common.network.msg;
 
-import committee.nova.patpatpat.PatPatPat;
-import committee.nova.patpatpat.common.util.CommonUtilities;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
+import committee.nova.patpatpat.client.network.ClientPacketUtils;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.function.Supplier;
@@ -30,13 +28,7 @@ public class PatSyncMessage {
     }
 
     public void handler(Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() -> {
-            final World w = Minecraft.getInstance().level;
-            if (w == null) return;
-            final Entity e = w.getEntity(id);
-            if (!(CommonUtilities.isPattable(e))) return;
-            e.getCapability(PatPatPat.PAT).ifPresent(p -> p.setJoy(joy));
-        });
+        ctx.get().enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> ClientPacketUtils.handleSync(id, joy)));
         ctx.get().setPacketHandled(true);
     }
 }
