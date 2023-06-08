@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "patpatpat",
+  "version": "${version}",
+  "name": "PatPatPat",
+  "description": "",
+  "authors": [
+    "Tapio"
+  ],
+  "contact": {
+    "repo": "https://github.com/Nova-Committee/PatPatPat"
+  },
+  "license": "GPL-3.0",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "committee.nova.patpatpat.client.PatPatPatClient"
+    ],
+    "main": [
+      "committee.nova.patpatpat.PatPatPat"
+    ]
+  },
+  "mixins": [
+    "patpatpat.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "fabric": "*",
+    "minecraft": "*"
+  }
+}
