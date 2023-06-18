@@ -1,6 +1,6 @@
 # PatPatPat
 ## Introduction
-PatPatPat allows players to pat a tamed cat or wolf.
+PatPatPat allows players to pat(Shift + Left Click) a tamed cat or wolf.
 
 # Feature
 When patting:
