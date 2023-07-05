@@ -1,0 +1,6 @@
+name: PatPatPat
+version: '${project.version}'
+main: committee.nova.patpatpat.Patpatpat
+api-version: '1.20'
+load: STARTUP
+authors: [ Tapio ]
