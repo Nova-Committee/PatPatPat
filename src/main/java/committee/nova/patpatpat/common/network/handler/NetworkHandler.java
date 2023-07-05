@@ -19,8 +19,8 @@ public class NetworkHandler {
         INSTANCE = NetworkRegistry.newSimpleChannel(
                 new ResourceLocation(PatPatPat.MODID, "pat"),
                 () -> VERSION,
-                (version) -> version.equals(VERSION),
-                (version) -> version.equals(VERSION)
+                NetworkRegistry.ACCEPTVANILLA::equals,
+                NetworkRegistry.ACCEPTVANILLA::equals
         );
         INSTANCE.messageBuilder(PatSyncMessage.class, nextId())
                 .encoder(PatSyncMessage::toBytes)
