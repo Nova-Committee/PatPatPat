@@ -1,11 +1,15 @@
 package committee.nova.patpatpat;
 
+import net.minecraftforge.fml.IExtensionPoint;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 @Mod("patpatpat")
 public class PatPatPat {
     public static final String MODID = "patpatpat";
-    private static final Logger LOGGER = LogManager.getLogger();
+
+    public PatPatPat() {
+        ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class,
+                () -> new IExtensionPoint.DisplayTest(() -> "", (a, b) -> true));
+    }
 }
