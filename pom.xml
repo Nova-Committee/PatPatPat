@@ -71,4 +71,11 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>nova</id>
+            <url>https://maven.nova-committee.cn/releases</url>
+        </repository>
+    </distributionManagement>
 </project>

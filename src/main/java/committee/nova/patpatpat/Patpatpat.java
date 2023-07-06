@@ -18,13 +18,13 @@ import java.io.IOException;
 import java.util.*;
 
 public final class Patpatpat extends JavaPlugin implements Listener {
-    private static final Map<Class<? extends Entity>, List<Sound>> pattedSound = Maps.newHashMap();
+    private static final Map<EntityType, List<Sound>> pattedSound = Maps.newHashMap();
     private final NamespacedKey dataKey = new NamespacedKey(this, "pat");
     private final String channel = "patpatpat:pat";
 
     static {
-        pattedSound.put(Cat.class, ImmutableList.of(Sound.ENTITY_CAT_PURR, Sound.ENTITY_CAT_PURREOW));
-        pattedSound.put(Wolf.class, ImmutableList.of(Sound.ENTITY_WOLF_WHINE, Sound.ENTITY_WOLF_PANT));
+        pattedSound.put(EntityType.CAT, ImmutableList.of(Sound.ENTITY_CAT_PURR, Sound.ENTITY_CAT_PURREOW));
+        pattedSound.put(EntityType.WOLF, ImmutableList.of(Sound.ENTITY_WOLF_WHINE, Sound.ENTITY_WOLF_PANT));
     }
 
     @Override
@@ -86,15 +86,14 @@ public final class Patpatpat extends JavaPlugin implements Listener {
 
     private static List<Sound> getPattedSounds(Entity e) {
         final List<Sound> l = new ArrayList<>();
-        for (final Map.Entry<Class<? extends Entity>, List<Sound>> t : pattedSound.entrySet())
-            if (t.getKey().isAssignableFrom(e.getClass())) l.addAll(t.getValue());
+        for (final Map.Entry<EntityType, List<Sound>> t : pattedSound.entrySet())
+            if (e.getType().equals(t.getKey())) l.addAll(t.getValue());
         return l;
     }
 
     private static boolean isPattable(Entity e) {
         if (e == null) return false;
-        for (final Class<?> c : pattedSound.keySet()) if (c.isAssignableFrom(e.getClass())) return true;
-        return false;
+        return pattedSound.containsKey(e.getType());
     }
 
     private void sendPatMsg(World world, int eId, int joy) {
