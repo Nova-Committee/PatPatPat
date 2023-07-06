@@ -20,6 +20,8 @@ public class PatPatPatClient implements ClientModInitializer {
         EntityRendererRegistry.register(EntityType.CAT, PattedCatRenderer::new);
         EntityRendererRegistry.register(EntityType.WOLF, PattedWolfRenderer::new);
         ClientPlayNetworking.registerGlobalReceiver(PatPatPat.PAT, (client, handler, buf, responseSender) -> {
+            // Spigot Compat
+            buf.readByte();
             final int id = buf.readInt();
             final int joy = buf.readInt();
             client.execute(() -> {

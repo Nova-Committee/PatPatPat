@@ -90,6 +90,7 @@ public abstract class MixinLivingEntity extends Entity implements IPattable {
             }
         } else setSilent(false);
         final PacketByteBuf buf = PacketByteBufs.create();
+        buf.writeByte(0);
         buf.writeInt(getId());
         buf.writeInt(joy);
         if (!(getWorld() instanceof ServerWorld)) return;
