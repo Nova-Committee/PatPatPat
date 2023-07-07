@@ -18,7 +18,7 @@ public class NetworkHandler {
     public static void registerMessage() {
         INSTANCE = NetworkRegistry.newSimpleChannel(
                 new ResourceLocation(PatPatPat.MODID, "pat"),
-                () -> VERSION,
+                () -> NetworkRegistry.ACCEPTVANILLA,
                 NetworkRegistry.ACCEPTVANILLA::equals,
                 NetworkRegistry.ACCEPTVANILLA::equals
         );
