@@ -11,7 +11,6 @@ import net.minecraft.network.play.INetHandlerPlayClient;
 import net.minecraft.world.World;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.io.IOException;
 
 @ParametersAreNonnullByDefault
 public class SPacketJoySync implements Packet<INetHandlerPlayClient> {
@@ -28,13 +27,15 @@ public class SPacketJoySync implements Packet<INetHandlerPlayClient> {
     }
 
     @Override
-    public void readPacketData(PacketBuffer buf) throws IOException {
+    public void readPacketData(PacketBuffer buf) {
+        buf.readByte();
         id = buf.readInt();
         joy = buf.readInt();
     }
 
     @Override
-    public void writePacketData(PacketBuffer buf) throws IOException {
+    public void writePacketData(PacketBuffer buf) {
+        buf.writeByte(0);
         buf.writeInt(id);
         buf.writeInt(joy);
     }
